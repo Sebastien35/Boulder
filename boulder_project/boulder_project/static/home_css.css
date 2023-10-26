@@ -1,0 +1,12 @@
+.navbar {
+    height: 100px; /* Ajustez la hauteur selon vos besoins */
+    padding-left: 5px;
+}
+
+.logo-img{
+    width: 100px; /* Définissez la largeur souhaitée pour l'image */
+    height: auto; /* Laissez la hauteur ajuster automatiquement pour maintenir les proportions */;
+    margin: 0;
+    position : absolute left 10px;
+
+}
