@@ -18,6 +18,7 @@ class Media(models.Model):
 class text_post(models.Model):
     content=models.CharField(max_length=5000)
     created_at=models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return self.content
