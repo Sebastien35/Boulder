@@ -1,11 +1,16 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 
 fs=FileSystemStorage(location='media/')
 class Media(models.Model):
     title = models.CharField(max_length=255)
-    file = models.ImageField(upload_to='', storage=fs)
+    file = models.FileField(upload_to='', storage=fs)
+    date=models.DateField(auto_now=True)
+    author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='media_posts', default=None, null=True, blank=True)
+    
+    
     
 
     class Meta:
@@ -17,7 +22,7 @@ class Media(models.Model):
 
 class text_post(models.Model):
     content=models.CharField(max_length=5000)
-    created_at=models.DateTimeField(auto_now=True)
+    date=models.DateTimeField(auto_now=True)
     
 
     def __str__(self):
