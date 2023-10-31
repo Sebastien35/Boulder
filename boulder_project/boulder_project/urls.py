@@ -1,7 +1,8 @@
 
 from django.contrib import admin
 from django.urls import path
-from .views import login_view, register_view, home_view, upload_media, logout_view
+from django.contrib.auth import views as auth_views
+from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -9,11 +10,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',login_view, name='login'),
-    path('register/', register_view, name='register'),
-    path('', home_view, name='home'),
-    path('upload/',upload_media,name='upload_media'),
-    path('logout/',logout_view, name='logout')
+    path('login/', views.CustomLoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
+    path('', views.home_view, name='home'),
+    path('upload/',views.upload_media,name='upload_media'),
+   
 ]
 
 if settings.DEBUG:

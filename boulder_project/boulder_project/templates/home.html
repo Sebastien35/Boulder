@@ -2,15 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-<style>
-    .card{
-        height:100%
-    }
-    .card img{
-        height:500px;
-        object-fit: cover;
-    }
-</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +31,7 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Déconnexion</button>
                         </form>
+                        
 
                         <li class="nav-item">
                             <img src="{% static 'new_post_ico3.png' %}" alt="Nouveau Post" class="custom_img1" data-bs-toggle="modal" data-bs-target="#addPostModal" style="width: 80px; position: absolute; right: 5%; top: 5%">
@@ -91,6 +84,18 @@
             </div>
         </div>
     </div>
+<style>
+.card{
+    height:100%
+}
+.card img{
+    height:500px;
+    object-fit: cover;
+}
+
+</style>
+
+
 
     <div class="container mt-5">
         <div class="row">

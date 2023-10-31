@@ -16,12 +16,12 @@
    height: auto
 }
 
+
 .card{
     height:100%
 }
-
 .card img{
-    height: 200px;
+    height:500px;
     object-fit: cover;
-
 }
+

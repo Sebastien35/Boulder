@@ -14,13 +14,23 @@ class RegistrationForm(UserCreationForm):
 class MediaForm(forms.ModelForm):
     class Meta:
         model = Media
-        fields = ('title', 'file', 'author')  # Ajoutez 'author' aux champs du formulaire
+        fields = ('title', 'file', 'author')
 
-    def __init__(self, user, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         super(MediaForm, self).__init__(*args, **kwargs)
-        self.fields['author'].initial = user  # Définissez l'utilisateur comme valeur initiale du champ 'author'
-        self.fields['author'].widget = forms.HiddenInput()  # Cachez le champ 'author' dans le formulaire
 
+        if user:
+            self.fields['author'].initial = user
+            self.fields['author'].widget = forms.HiddenInput()
+
+    def save(self, commit=True, *args, **kwargs):
+        # Surchargez la méthode save pour ajouter l'auteur au modèle Media
+        instance = super(MediaForm, self).save(commit=False, *args, **kwargs)
+        if commit:
+            instance.author = self.fields['author'].initial
+            instance.save()
+        return instance
         
 class TextPostForm(forms.ModelForm):
     class Meta:
